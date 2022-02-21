@@ -34,7 +34,11 @@ void keyboardPress(size_t command) {
 void rotateLeft() {
   switch(mode) {
     case 1:
+<<<<<<< HEAD
       // Volume Increase
+=======
+      // Increase the volume.
+>>>>>>> 1867f8818341b5c35dd634e4e3cadc58c299d511
       Consumer.write(MEDIA_VOLUME_DOWN);
       break;
     case 2:
@@ -62,7 +66,11 @@ void rotateLeft() {
 void rotateRight() {
   switch(mode) {
     case 1:
+<<<<<<< HEAD
       // Volume Decrease
+=======
+      // Decrease the volume.
+>>>>>>> 1867f8818341b5c35dd634e4e3cadc58c299d511
       Consumer.write(MEDIA_VOLUME_UP);
       break;
     case 2:
