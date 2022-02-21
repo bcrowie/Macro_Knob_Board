@@ -18,7 +18,7 @@ void rotateLeft() {
   switch(mode) {
     case 1:
       // Increase the volume.
-      Consumer.write(MEDIA_VOLUME_UP);
+      Consumer.write(MEDIA_VOLUME_DOWN);
       break;
     case 2:
       //Cltr + TAB
@@ -41,7 +41,7 @@ void rotateRight() {
   switch(mode) {
     case 1:
       // Decrease the volume.
-      Consumer.write(MEDIA_VOLUME_DOWN);
+      Consumer.write(MEDIA_VOLUME_UP);
       break;
     case 2:
       //Cltr + SHIFT + TAB
