@@ -1,15 +1,29 @@
 #include <Arduino.h>
 #include <HID-Project.h>
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 
+// Encoder
 #define inputCLK 1
 #define inputDT 2
 #define inputSW 3
+
+// Buttons
 #define buttonOne 8
 #define buttonTwo 6
 #define buttonThree 4
 #define buttonFour 10
 #define buttonFive 7
 #define buttonSix 5
+
+// Display
+#define screenHeight 64
+#define screenWidth 128
+#define oledReset -1
+
+Adafruit_SSD1306 oled(screenWidth, screenHeight, &Wire, oledReset);
 
 int currentStateCLK;
 int previousStateCLK;
@@ -34,11 +48,7 @@ void keyboardPress(size_t command) {
 void rotateLeft() {
   switch(mode) {
     case 1:
-<<<<<<< HEAD
-      // Volume Increase
-=======
       // Increase the volume.
->>>>>>> 1867f8818341b5c35dd634e4e3cadc58c299d511
       Consumer.write(MEDIA_VOLUME_DOWN);
       break;
     case 2:
@@ -66,11 +76,7 @@ void rotateLeft() {
 void rotateRight() {
   switch(mode) {
     case 1:
-<<<<<<< HEAD
-      // Volume Decrease
-=======
       // Decrease the volume.
->>>>>>> 1867f8818341b5c35dd634e4e3cadc58c299d511
       Consumer.write(MEDIA_VOLUME_UP);
       break;
     case 2:
@@ -109,6 +115,20 @@ void setup() {
   Serial.begin (9600);
   Consumer.begin();
   previousStateCLK = digitalRead(inputCLK);
+
+  if(!oled.begin(SSD1306_SWITCHCAPVCC, 0x78)) {
+    Serial.println(F("SSD1306 Allocation Failed"));
+    while(true);
+  }
+
+  delay(2000);
+  oled.clearDisplay();
+
+  oled.setTextSize(1);
+  oled.setTextColor(WHITE);
+  oled.setCursor(0, 10);
+  oled.println("Welcome");
+  oled.display();
 }
 
 void loop() {
